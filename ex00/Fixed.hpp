@@ -5,11 +5,13 @@ class Fixed {
     public:
         Fixed();
         Fixed(const Fixed& other);
-        ~Fixed();
         Fixed& operator=(const Fixed& other);
+        ~Fixed();
         int getRawBits() const;
+        void setRawBits(int bits);
     private:
-        int _value;
+        int _bits;
+        static const int fractionalBits = 8;
 };
 
 #endif /* __FIXED_HPP__ */
