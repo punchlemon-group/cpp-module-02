@@ -11,7 +11,7 @@ class Fixed {
         void setRawBits(int bits);
     private:
         int _bits;
-        static const int fractionalBits = 8;
+        static const int _fractionalBits = 8;
 };
 
 #endif /* __FIXED_HPP__ */
