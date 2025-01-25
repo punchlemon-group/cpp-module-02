@@ -20,10 +20,10 @@ class Fixed {
         Fixed operator-(const Fixed& other) const;
         Fixed operator*(const Fixed& other) const;
         Fixed operator/(const Fixed& other) const;
-        Fixed& operator++(); // pre
-        Fixed operator++(int); // post
-        Fixed& operator--(); // pre
-        Fixed operator--(int); // post
+        Fixed& operator++();
+        Fixed operator++(int);
+        Fixed& operator--();
+        Fixed operator--(int);
         friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
         ~Fixed();
         int getRawBits() const;
