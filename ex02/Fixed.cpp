@@ -8,17 +8,14 @@ Fixed::Fixed(const int intValue) {
 }
 
 Fixed::Fixed(const float floatValue) {
-    float shiftedFloatValue = roundf(floatValue * (1 << _numOfFractionalBits));
-    this->setRawBits(shiftedFloatValue);
+    this->setRawBits(roundf(floatValue * (1 << _numOfFractionalBits)));
 }
 
-Fixed::Fixed(const Fixed& other) {
-    *this = other;
-}
+Fixed::Fixed(const Fixed& other) : _bits(other.getRawBits()) {}
 
 Fixed& Fixed::operator=(const Fixed& other) {
     if (this != &other) {
-        this->_bits = other.getRawBits();
+        this->setRawBits(other.getRawBits());
     }
     return *this;
 }
