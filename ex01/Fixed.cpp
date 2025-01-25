@@ -12,8 +12,7 @@ Fixed::Fixed(const int intValue) {
 
 Fixed::Fixed(const float floatValue) {
     std::cout << "Float constructor called" << std::endl;
-    float shiftedFloatValue = roundf(floatValue * (1 << _numOfFractionalBits));
-    this->setRawBits(shiftedFloatValue);
+    this->setRawBits(roundf(floatValue * (1 << _numOfFractionalBits)));
 }
 
 Fixed::Fixed(const Fixed& other) {
@@ -24,7 +23,7 @@ Fixed::Fixed(const Fixed& other) {
 Fixed& Fixed::operator=(const Fixed& other) {
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other) {
-        this->_bits = other.getRawBits();
+        this->setRawBits(other.getRawBits());
     }
     return *this;
 }
