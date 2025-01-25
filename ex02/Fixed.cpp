@@ -82,17 +82,17 @@ Fixed Fixed::operator-(const Fixed& other) const {
     return result;
 }
 
-// Fixed Fixed::operator*(const Fixed& other) const {
-//     Fixed result;
-//     result.setRawBits(this->getRawBits() * other.getRawBits());
-//     return result;
-// }
+Fixed Fixed::operator*(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits((this->getRawBits() * other.getRawBits()) >> _numOfFractionalBits);
+    return result;
+}
 
-// Fixed Fixed::operator/(const Fixed& other) const {
-//     Fixed result;
-//     result.setRawBits(this->getRawBits() / other.getRawBits());
-//     return result;
-// }
+Fixed Fixed::operator/(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits((this->getRawBits() << _numOfFractionalBits) / other.getRawBits());
+    return result;
+}
 
 Fixed& Fixed::operator++() {
     ++_bits;
