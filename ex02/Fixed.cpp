@@ -23,29 +23,6 @@ Fixed& Fixed::operator=(const Fixed& other) {
     return *this;
 }
 
-Fixed::~Fixed(void) {}
-
-int Fixed::getRawBits(void) const {
-    return _bits;
-}
-
-void Fixed::setRawBits(int bits) {
-    this->_bits = bits;
-}
-
-float Fixed::toFloat() const {
-    return static_cast<float>(this->getRawBits()) / (1 << _numOfFractionalBits);
-}
-
-int Fixed::toInt() const {
-    return this->getRawBits() >> _numOfFractionalBits;
-}
-
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-    os << fixed.toFloat();
-    return os;
-}
-
 bool Fixed::operator>(const Fixed& other) const {
     return this->getRawBits() > other.getRawBits();
 }
@@ -114,6 +91,29 @@ Fixed Fixed::operator--(int) {
     Fixed temp = *this;
     --_bits;
     return temp;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+    os << fixed.toFloat();
+    return os;
+}
+
+Fixed::~Fixed(void) {}
+
+int Fixed::getRawBits(void) const {
+    return _bits;
+}
+
+void Fixed::setRawBits(int bits) {
+    this->_bits = bits;
+}
+
+float Fixed::toFloat() const {
+    return static_cast<float>(this->getRawBits()) / (1 << _numOfFractionalBits);
+}
+
+int Fixed::toInt() const {
+    return this->getRawBits() >> _numOfFractionalBits;
 }
 
 Fixed Fixed::max(Fixed& a, Fixed& b) {
