@@ -5,6 +5,8 @@ NAME = a.out
 OUT_DIR = out
 SRCS_DIR = srcs
 
+CXX = g++
+
 SRCS = \
 $(addsuffix .cpp, \
 	main \
