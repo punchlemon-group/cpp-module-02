@@ -10,7 +10,6 @@ class Fixed {
         Fixed(const float floatValue);
         Fixed(const Fixed& other);
         Fixed& operator=(const Fixed& other);
-        friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
         ~Fixed();
         int getRawBits() const;
         void setRawBits(int bits);
@@ -20,5 +19,7 @@ class Fixed {
         int _bits;
         static const int _numOfFractionalBits = 8;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif /* __FIXED_HPP__ */

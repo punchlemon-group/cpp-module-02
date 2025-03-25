@@ -28,11 +28,6 @@ Fixed& Fixed::operator=(const Fixed& other) {
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-    os << fixed.toFloat();
-    return os;
-}
-
 Fixed::~Fixed(void) {
     std::cout << "Destructor called" << std::endl;
 }
@@ -51,4 +46,9 @@ float Fixed::toFloat() const {
 
 int Fixed::toInt() const {
     return this->getRawBits() >> _numOfFractionalBits;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+    os << fixed.toFloat();
+    return os;
 }
