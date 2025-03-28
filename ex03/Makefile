@@ -5,7 +5,7 @@ NAME = bsp
 OUT_DIR = out
 SRCS_DIR = srcs
 
-CXX = g++
+CXX = c++
 
 SRCS = \
 $(addsuffix .cpp, \
