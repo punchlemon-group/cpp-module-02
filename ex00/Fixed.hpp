@@ -3,14 +3,14 @@
 
 class Fixed {
     public:
-        Fixed();
-        Fixed(const Fixed& other);
-        Fixed& operator=(const Fixed& other);
+        Fixed( void );
+        Fixed( const Fixed& other );
+        Fixed& operator=( const Fixed& other );
         ~Fixed();
-        int getRawBits() const;
-        void setRawBits(const int bits);
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
     private:
-        int _bits;
+        int _raw;
         static const int _fractionalBits = 8;
 };
 
