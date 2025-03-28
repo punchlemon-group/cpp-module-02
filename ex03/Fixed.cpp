@@ -1,130 +1,130 @@
 #include <cmath>
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : _bits(0) {}
+Fixed::Fixed( void ) : _raw(0) {}
 
-Fixed::Fixed(const int intValue) {
+Fixed::Fixed( int const intValue ) {
     this->setRawBits(intValue << _numOfFractionalBits);
 }
 
-Fixed::Fixed(const float floatValue) {
+Fixed::Fixed( float const floatValue ) {
     this->setRawBits(roundf(floatValue * (1 << _numOfFractionalBits)));
 }
 
-Fixed::Fixed(const Fixed& other) : _bits(other.getRawBits()) {}
+Fixed::Fixed( const Fixed& other ) : _raw(other.getRawBits()) {}
 
-Fixed& Fixed::operator=(const Fixed& other) {
+Fixed& Fixed::operator=( const Fixed& other ) {
     if (this != &other) {
         this->setRawBits(other.getRawBits());
     }
     return *this;
 }
 
-bool Fixed::operator>(const Fixed& other) const {
+bool Fixed::operator>( const Fixed& other ) const {
     return this->getRawBits() > other.getRawBits();
 }
 
-bool Fixed::operator<(const Fixed& other) const {
+bool Fixed::operator<( const Fixed& other ) const {
     return this->getRawBits() < other.getRawBits();
 }
 
-bool Fixed::operator>=(const Fixed& other) const {
+bool Fixed::operator>=( const Fixed& other ) const {
     return this->getRawBits() >= other.getRawBits();
 }
 
-bool Fixed::operator<=(const Fixed& other) const {
+bool Fixed::operator<=( const Fixed& other ) const {
     return this->getRawBits() <= other.getRawBits();
 }
 
-bool Fixed::operator==(const Fixed& other) const {
+bool Fixed::operator==( const Fixed& other ) const {
     return this->getRawBits() == other.getRawBits();
 }
 
-bool Fixed::operator!=(const Fixed& other) const {
+bool Fixed::operator!=( const Fixed& other ) const {
     return this->getRawBits() != other.getRawBits();
 }
 
-Fixed Fixed::operator+(const Fixed& other) const {
+Fixed Fixed::operator+( const Fixed& other ) const {
     Fixed result;
     result.setRawBits(this->getRawBits() + other.getRawBits());
     return result;
 }
 
-Fixed Fixed::operator-(const Fixed& other) const {
+Fixed Fixed::operator-( const Fixed& other ) const {
     Fixed result;
     result.setRawBits(this->getRawBits() - other.getRawBits());
     return result;
 }
 
-Fixed Fixed::operator*(const Fixed& other) const {
+Fixed Fixed::operator*( const Fixed& other ) const {
     Fixed result;
     result.setRawBits((this->getRawBits() * other.getRawBits()) >> _numOfFractionalBits);
     return result;
 }
 
-Fixed Fixed::operator/(const Fixed& other) const {
+Fixed Fixed::operator/( const Fixed& other ) const {
     Fixed result;
     result.setRawBits((this->getRawBits() << _numOfFractionalBits) / other.getRawBits());
     return result;
 }
 
 Fixed& Fixed::operator++() {
-    ++_bits;
+    ++_raw;
     return *this;
 }
 
-Fixed Fixed::operator++(int) {
+Fixed Fixed::operator++( int ) {
     Fixed temp = *this;
-    ++_bits;
+    ++_raw;
     return temp;
 }
 
 Fixed& Fixed::operator--() {
-    --_bits;
+    --_raw;
     return *this;
 }
 
-Fixed Fixed::operator--(int) {
+Fixed Fixed::operator--( int ) {
     Fixed temp = *this;
-    --_bits;
+    --_raw;
     return temp;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+std::ostream& operator<<( std::ostream& os, const Fixed& fixed ) {
     os << fixed.toFloat();
     return os;
 }
 
 Fixed::~Fixed(void) {}
 
-int Fixed::getRawBits(void) const {
-    return _bits;
+int Fixed::getRawBits( void ) const {
+    return _raw;
 }
 
-void Fixed::setRawBits(int bits) {
-    this->_bits = bits;
+void Fixed::setRawBits( int const raw ) {
+    this->_raw = raw;
 }
 
-float Fixed::toFloat() const {
+float Fixed::toFloat( void ) const {
     return static_cast<float>(this->getRawBits()) / (1 << _numOfFractionalBits);
 }
 
-int Fixed::toInt() const {
+int Fixed::toInt( void ) const {
     return this->getRawBits() >> _numOfFractionalBits;
 }
 
-Fixed Fixed::max(Fixed& a, Fixed& b) {
+Fixed Fixed::max( Fixed& a, Fixed& b ) {
     return (a > b) ? a : b;
 }
 
-const Fixed Fixed::max(const Fixed& a, const Fixed& b) {
+const Fixed Fixed::max( const Fixed& a, const Fixed& b ) {
     return (a > b) ? a : b;
 }
 
-Fixed Fixed::min(Fixed& a, Fixed& b) {
+Fixed Fixed::min( Fixed& a, Fixed& b ) {
     return (a < b) ? a : b;
 }
 
-const Fixed Fixed::min(const Fixed& a, const Fixed& b) {
+const Fixed Fixed::min( const Fixed& a, const Fixed& b ) {
     return (a < b) ? a : b;
 }
